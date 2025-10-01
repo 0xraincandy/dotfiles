@@ -18,3 +18,6 @@ this will install the the following things:
 - noto-fonts
 - breeze-gtk
 <img width="1920" height="1080" alt="afbeelding" src="https://github.com/user-attachments/assets/fa717683-0413-42b7-8f5a-3569f7f6ec6d" />
+
+
+if rofi doesnt accept the theme, select the theme selector and select rounded-nord-dark.rasi
