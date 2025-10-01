@@ -2,7 +2,7 @@
 
 To install the dotfiles use this:
 
-bash <(curl https://raw.githubusercontent.com/0xraincandy/dotfiles/main/install.sh)
+> bash <(curl https://raw.githubusercontent.com/0xraincandy/dotfiles/main/install.sh)
 
 this will install the the following things:
 - hyprland
