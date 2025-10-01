@@ -3,7 +3,7 @@ set -e
 
 # Install required packages
 echo "[*] Installing required packages..."
-sudo pacman -S --noconfirm hyprland rust fastfetch pacman-contrib hyprshot waybar hyprpaper rofi sddm nwg-look kitty nemo hyprpolkitagent pipewire-pulse git xdg-desktop-portal-hyprland git breeze-gtk
+sudo pacman -S --noconfirm hyprland xorg-xrandr rust firefox fastfetch pacman-contrib hyprshot waybar hyprpaper rofi sddm nwg-look kitty nemo hyprpolkitagent pipewire-pulse git xdg-desktop-portal-hyprland git noto-fonts breeze-gtk
 
 # Clone dotfiles if not already cloned
 DOTFILES_DIR="$HOME/.dotfiles"
@@ -16,7 +16,7 @@ fi
 mkdir -p "$HOME/.config"
 
 # List of config folders to symlink
-CONFIGS=("hypr" "kitty" "rofi" "waybar")
+CONFIGS=("hypr" "kitty" "rofi" "waybar" "neofetch" "fastfetch")
 
 for config in "${CONFIGS[@]}"; do
     src="$DOTFILES_DIR/$config"
@@ -35,6 +35,18 @@ done
 echo "[*] Enabling SDDM login manager..."
 sudo systemctl enable sddm.service
 
+# Ensure Numlock is on in SDDM
+SDDM_CONF="/etc/sddm.conf"
+if ! grep -q "^\[General\]" "$SDDM_CONF" 2>/dev/null; then
+    echo -e "[General]\nNumlock=on" | sudo tee -a "$SDDM_CONF" > /dev/null
+else
+    if grep -q "^Numlock=" "$SDDM_CONF"; then
+        sudo sed -i 's/^Numlock=.*/Numlock=on/' "$SDDM_CONF"
+    else
+        sudo sed -i '/^\[General\]/a Numlock=on' "$SDDM_CONF"
+    fi
+fi
+
 # Clone and install ame from AUR
 echo "[*] Installing ame from AUR..."
 git clone https://aur.archlinux.org/ame.git
@@ -43,9 +55,10 @@ makepkg -si --noconfirm
 cd ..
 rm -rf ame
 
-# Run ame to install font package
-echo "[*] Installing all-the-icons fonts..."
+# Run ame to install font and neofetch packages
+echo "[*] Installing all-the-icons fonts and neofetch..."
 ame ins ttf-all-the-icons
+ame ins neofetch
 
 # Clone GRUB theme
 echo "[*] Installing GRUB theme..."
@@ -76,5 +89,20 @@ echo "[*] Copying wallpapers..."
 mkdir -p "$HOME/Pictures/Wallpapers"
 cp "$DOTFILES_DIR/cirno1.jpg" "$HOME/Pictures/Wallpapers/"
 cp "$DOTFILES_DIR/cirno.jpg" "$HOME/Pictures/Wallpapers/"
+
+# Add fastfetch command to .bashrc if not already present
+BASHRC="$HOME/.bashrc"
+FASTFETCH_CMD='fastfetch --logo /home/rain/.config/fastfetch/images/cirno.png --logo-type kitty-direct'
+
+if ! grep -Fxq "$FASTFETCH_CMD" "$BASHRC"; then
+    echo "[*] Adding fastfetch command to $BASHRC"
+    echo "$FASTFETCH_CMD" >> "$BASHRC"
+else
+    echo "[*] fastfetch command already exists in $BASHRC"
+fi
+
+# Install SDDM Astronaut theme
+echo "[*] Installing SDDM Astronaut theme..."
+sh -c "$(curl -fsSL https://raw.githubusercontent.com/keyitdev/sddm-astronaut-theme/master/setup.sh)"
 
 echo "[✓] All setup completed successfully!"
