@@ -35,8 +35,8 @@ done
 echo "[*] Enabling SDDM login manager..."
 sudo systemctl enable sddm.service
 
-# Clone and install amethyst from AUR
-echo "[*] Installing amethyst from AUR..."
+# Clone and install ame from AUR
+echo "[*] Installing ame from AUR..."
 git clone https://aur.archlinux.org/ame.git
 cd ame
 makepkg -si --noconfirm
