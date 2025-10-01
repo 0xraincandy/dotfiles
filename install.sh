@@ -45,7 +45,7 @@ rm -rf ame
 
 # Run ame to install font package
 echo "[*] Installing all-the-icons fonts..."
-ame ins tff-all-the-icons
+ame ins tff-all-the-icons.git
 
 # Clone GRUB theme
 echo "[*] Installing GRUB theme..."
