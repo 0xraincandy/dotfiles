@@ -3,7 +3,7 @@ set -e
 
 # Install required packages
 echo "[*] Installing required packages..."
-sudo pacman -S --noconfirm hyprland hyprshot waybar hyprpaper rofi sddm nwg-look kitty nemo hyprpolkitagent pipewire pulse xdg-desktop-portal-hyprland git breeze-gtk
+sudo pacman -S --noconfirm hyprland hyprshot waybar hyprpaper rofi sddm nwg-look kitty nemo hyprpolkitagent pipewire-pulse xdg-desktop-portal-hyprland git breeze-gtk
 
 # Clone dotfiles if not already cloned
 DOTFILES_DIR="$HOME/.dotfiles"
@@ -31,8 +31,50 @@ for config in "${CONFIGS[@]}"; do
     ln -s "$src" "$dest"
 done
 
-# Optional: enable sddm
+# Enable SDDM login manager
 echo "[*] Enabling SDDM login manager..."
 sudo systemctl enable sddm.service
 
-echo "[✓] Dotfiles installed and configured!"
+# Clone and install amethyst from AUR
+echo "[*] Installing amethyst from AUR..."
+git clone https://aur.archlinux.org/amethyst.git
+cd amethyst
+makepkg -si --noconfirm
+cd ..
+rm -rf amethyst
+
+# Run ame to install font package
+echo "[*] Installing all-the-icons fonts..."
+ame ins tff-all-the-icons
+
+# Clone GRUB theme
+echo "[*] Installing GRUB theme..."
+git clone https://github.com/Hitori-Laura/OsageChan_GRUB_theme.git
+sudo cp -r OsageChan_GRUB_theme /usr/share/grub/themes
+
+# Add GRUB theme to /etc/default/grub if not already present
+GRUB_CONFIG="/etc/default/grub"
+GRUB_THEME_LINE='GRUB_THEME="/usr/share/grub/themes/OsageChan_GRUB_theme/theme.txt"'
+
+if ! grep -Fxq "$GRUB_THEME_LINE" "$GRUB_CONFIG"; then
+    echo "[*] Adding GRUB theme line to $GRUB_CONFIG"
+    echo "$GRUB_THEME_LINE" | sudo tee -a "$GRUB_CONFIG" > /dev/null
+else
+    echo "[*] GRUB theme line already exists in $GRUB_CONFIG"
+fi
+
+# Regenerate GRUB config
+echo "[*] Regenerating GRUB config..."
+sudo grub-mkconfig -o /boot/grub/grub.cfg
+
+# Copy GRUB background from dotfiles
+echo "[*] Copying GRUB background..."
+sudo cp "$DOTFILES_DIR/background.png" /usr/share/grub/themes/OsageChan_GRUB_theme/
+
+# Copy wallpapers
+echo "[*] Copying wallpapers..."
+mkdir -p "$HOME/Pictures/Wallpapers"
+cp "$DOTFILES_DIR/cirno1.jpg" "$HOME/Pictures/Wallpapers/"
+cp "$DOTFILES_DIR/cirno.jpg" "$HOME/Pictures/Wallpapers/"
+
+echo "[✓] All setup completed successfully!"
