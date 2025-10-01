@@ -1,0 +1,15 @@
+{
+    "type": "execute",
+    "command": "flatpak list --app --columns=application",
+    "title": "Flatpak",
+    "key": "flatpak",
+    "separator": ": ",
+    "output": "split",
+    "formatter": [
+        {
+            "type": "replace",
+            "search": "\\s*$",
+            "replace": ""
+        }
+    ]
+}
