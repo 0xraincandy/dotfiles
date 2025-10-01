@@ -37,11 +37,11 @@ sudo systemctl enable sddm.service
 
 # Clone and install amethyst from AUR
 echo "[*] Installing amethyst from AUR..."
-git clone https://aur.archlinux.org/amethyst.git
-cd amethyst
+git clone https://aur.archlinux.org/ame.git
+cd ame
 makepkg -si --noconfirm
 cd ..
-rm -rf amethyst
+rm -rf ame
 
 # Run ame to install font package
 echo "[*] Installing all-the-icons fonts..."
