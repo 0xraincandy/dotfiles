@@ -3,7 +3,7 @@ set -e
 
 # Install required packages
 echo "[*] Installing required packages..."
-sudo pacman -S --noconfirm hyprland hyprshot waybar hyprpaper rofi sddm nwg-look kitty nemo hyprpolkitagent pipewire-pulse git xdg-desktop-portal-hyprland git breeze-gtk
+sudo pacman -S --noconfirm hyprland rust pacman-contrib hyprshot waybar hyprpaper rofi sddm nwg-look kitty nemo hyprpolkitagent pipewire-pulse git xdg-desktop-portal-hyprland git breeze-gtk
 
 # Clone dotfiles if not already cloned
 DOTFILES_DIR="$HOME/.dotfiles"
