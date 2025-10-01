@@ -11,6 +11,7 @@ this will install the the following things:
 - firefox
 - fastfetch
 - neofetch
+- gedit
 - waybar
 - nemo
 - kitty
