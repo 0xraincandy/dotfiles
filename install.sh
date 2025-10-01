@@ -3,7 +3,7 @@ set -e
 
 # Install required packages
 echo "[*] Installing required packages..."
-sudo pacman -S --noconfirm hyprland hyprshot waybar hyprpaper rofi sddm breeze-gtk ttf-roboto ttf-ubuntu-font-family ttf-fira-code ttf-dejavu ttf-liberation noto-fonts noto-fonts-cjk noto-fonts-emoji fontconfig noto-fonts-cjk noto-fonts-emoji noto-fonts nwg-look
+sudo pacman -S --noconfirm hyprland hyprshot waybar hyprpaper rofi sddm nwg-look
 
 # Clone dotfiles if not already cloned
 DOTFILES_DIR="$HOME/.dotfiles"
