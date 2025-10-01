@@ -6,6 +6,7 @@ this will install the the following things:
 - hyprland
 - rofi
 - ame (aur helper)
+- nwg-look
 - hyprshot
 - hyprpaper (with my cirno wallpapers)
 - firefox
