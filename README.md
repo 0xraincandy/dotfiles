@@ -4,6 +4,7 @@ bash <(curl https://raw.githubusercontent.com/0xraincandy/dotfiles/main/install.
 
 this will install the the following things:
 - hyprland
+- rofi
 - hyprshot
 - hyprpaper (with my cirno wallpapers)
 - firefox
@@ -16,3 +17,4 @@ this will install the the following things:
 - sddm (with selectable themes)
 - noto-fonts
 - breeze-gtk
+<img width="1920" height="1080" alt="afbeelding" src="https://github.com/user-attachments/assets/fa717683-0413-42b7-8f5a-3569f7f6ec6d" />
