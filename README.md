@@ -5,6 +5,7 @@ bash <(curl https://raw.githubusercontent.com/0xraincandy/dotfiles/main/install.
 this will install the the following things:
 - hyprland
 - rofi
+- ame (aur helper)
 - hyprshot
 - hyprpaper (with my cirno wallpapers)
 - firefox
