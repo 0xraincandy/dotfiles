@@ -5,14 +5,14 @@ set -e
 echo "[*] Installing required packages..."
 sudo pacman -S --noconfirm hyprland xorg-xrandr rust firefox fastfetch pacman-contrib hyprshot waybar hyprpaper rofi sddm nwg-look kitty nemo hyprpolkitagent pipewire-pulse git xdg-desktop-portal-hyprland git noto-fonts breeze-gtk
 
-# Clone dotfiles if not already cloned
+# Clone dotfiles 
 DOTFILES_DIR="$HOME/.dotfiles"
 if [ ! -d "$DOTFILES_DIR" ]; then
     echo "[*] Cloning dotfiles..."
     git clone https://github.com/0xraincandy/dotfiles.git "$DOTFILES_DIR"
 fi
 
-# Create .config if it doesn't exist
+# Create .config if doesnt exist
 mkdir -p "$HOME/.config"
 
 # List of config folders to symlink
@@ -34,18 +34,6 @@ done
 # Enable SDDM login manager
 echo "[*] Enabling SDDM login manager..."
 sudo systemctl enable sddm.service
-
-# Ensure Numlock is on in SDDM
-SDDM_CONF="/etc/sddm.conf"
-if ! grep -q "^\[General\]" "$SDDM_CONF" 2>/dev/null; then
-    echo -e "[General]\nNumlock=on" | sudo tee -a "$SDDM_CONF" > /dev/null
-else
-    if grep -q "^Numlock=" "$SDDM_CONF"; then
-        sudo sed -i 's/^Numlock=.*/Numlock=on/' "$SDDM_CONF"
-    else
-        sudo sed -i '/^\[General\]/a Numlock=on' "$SDDM_CONF"
-    fi
-fi
 
 # Clone and install ame from AUR
 echo "[*] Installing ame from AUR..."
