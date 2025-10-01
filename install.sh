@@ -53,7 +53,7 @@ echo "[*] Installing GRUB theme..."
 git clone https://github.com/Hitori-Laura/OsageChan_GRUB_theme.git
 sudo cp -r OsageChan_GRUB_theme /usr/share/grub/themes
 
-# Add GRUB theme to /etc/default/grub if not already present
+# Add GRUB theme to /etc/default/grub
 GRUB_CONFIG="/etc/default/grub"
 GRUB_THEME_LINE='GRUB_THEME="/usr/share/grub/themes/OsageChan_GRUB_theme/theme.txt"'
 
@@ -78,7 +78,7 @@ mkdir -p "$HOME/Pictures/Wallpapers"
 cp "$DOTFILES_DIR/cirno1.jpg" "$HOME/Pictures/Wallpapers/"
 cp "$DOTFILES_DIR/cirno.jpg" "$HOME/Pictures/Wallpapers/"
 
-# Add fastfetch command to .bashrc if not already present
+# Add fastfetch command to .bashrc
 BASHRC="$HOME/.bashrc"
 FASTFETCH_CMD='fastfetch --logo /home/rain/.config/fastfetch/images/cirno.png --logo-type kitty-direct'
 
@@ -89,7 +89,7 @@ else
     echo "[*] fastfetch command already exists in $BASHRC"
 fi
 
-# Install SDDM Astronaut theme
+# Install SDDM theme
 echo "[*] Installing SDDM Astronaut theme..."
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/keyitdev/sddm-astronaut-theme/master/setup.sh)"
 
