@@ -4,7 +4,7 @@ import time
 from PIL import Image
 import shutil
 
-VIDEO_PATH = "/home/rain/Video's/badapple.mp4"
+VIDEO_PATH = "/home/rain/Videos/badapple.mp4"
 FRAME_DIR = "/tmp/badapple_frames_bw"
 AUDIO_PATH = "/tmp/badapple_audio.aac"
 
