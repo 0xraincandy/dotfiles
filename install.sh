@@ -3,7 +3,7 @@ set -e
 
 # Install required packages
 echo "[*] Installing required packages..."
-sudo pacman -S --noconfirm hyprland xorg-xrandr rust firefox gedit fastfetch pacman-contrib hyprshot waybar hyprpaper rofi sddm nwg-look kitty nemo hyprpolkitagent pipewire-pulse git xdg-desktop-portal-hyprland git noto-fonts breeze-gtk
+sudo pacman -S --noconfirm hyprland xorg-xrandr rust firefox fastfetch pacman-contrib hyprshot waybar hyprpaper rofi sddm nwg-look kitty nemo hyprpolkitagent pipewire-pulse git xdg-desktop-portal-hyprland git noto-fonts breeze-gtk
 
 # Clone dotfiles 
 DOTFILES_DIR="$HOME/.dotfiles"
@@ -14,6 +14,29 @@ fi
 
 # Create .config if doesnt exist
 mkdir -p "$HOME/.config"
+
+# -------------------------
+# Add Vim in Kitty desktop entry
+# -------------------------
+echo "[*] Creating Vim-in-Kitty desktop entry..."
+APP_DIR="$HOME/.local/share/applications"
+mkdir -p "$APP_DIR"
+
+cat > "$APP_DIR/vim-in-kitty.desktop" << 'EOF'
+[Desktop Entry]
+Name=Vim (Kitty)
+Comment=Edit text files in Vim inside Kitty terminal
+Exec=kitty -e vim %F
+Terminal=false
+Type=Application
+MimeType=text/plain;
+Categories=Utility;TextEditor;
+EOF
+
+update-desktop-database "$APP_DIR"
+xdg-mime default vim-in-kitty.desktop text/plain
+echo "[*] Vim-in-Kitty set as default text editor."
+# -------------------------
 
 # List of config folders to symlink
 CONFIGS=("hypr" "kitty" "rofi" "waybar" "neofetch" "fastfetch")
