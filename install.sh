@@ -100,6 +100,8 @@ echo "[*] Copying wallpapers..."
 mkdir -p "$HOME/Pictures/Wallpapers"
 cp "$DOTFILES_DIR/cirno1.jpg" "$HOME/Pictures/Wallpapers/"
 cp "$DOTFILES_DIR/cirno.jpg" "$HOME/Pictures/Wallpapers/"
+cp "$DOTFILES_DIR/Remilia1.jpg" "$HOME/Pictures/Wallpapers/"
+cp "$DOTFILES_DIR/Remilia5.jpg" "$HOME/Pictures/Wallpapers/"
 
 # Add fastfetch to .bashrc
 BASHRC="$HOME/.bashrc"
