@@ -113,7 +113,7 @@ fi
 
 # Darkmode for Dolphin
 BASHRC="$HOME/.bashrc"
-KVANTUM='FASTFETCH_CMD2='xport QT_STYLE_OVERRIDE_kvantum''
+KVANTUM='export QT_STYLE_OVERRIDE_kvantum'
 if ! grep -Fxq "$KVANTUM" "$BASHRC"; then
     echo "[*] Activating Darkmode for Dolphin"
     echo "$KVANTUM" >> "$BASHRC"
