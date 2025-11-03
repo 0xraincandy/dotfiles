@@ -18,11 +18,11 @@ mkdir -p "$HOME/.config"
 # -------------------------
 # Add Vim in Kitty desktop entry
 # -------------------------
-echo "[*] Creating Vim-in-Kitty desktop entry..."
+echo "[*] Adding vim as default text editor..."
 APP_DIR="$HOME/.local/share/applications"
 mkdir -p "$APP_DIR"
 
-cat > "$APP_DIR/vim-in-kitty.desktop" << 'EOF'
+cat > "$APP_DIR/vim.desktop" << 'EOF'
 [Desktop Entry]
 Name=Vim (Kitty)
 Comment=Edit text files in Vim inside Kitty terminal
@@ -34,8 +34,8 @@ Categories=Utility;TextEditor;
 EOF
 
 update-desktop-database "$APP_DIR"
-xdg-mime default vim-in-kitty.desktop text/plain
-echo "[*] Vim-in-Kitty set as default text editor."
+xdg-mime default vim.desktop text/plain
+echo "[*] Vim set as default text editor."
 # -------------------------
 
 # List of config folders to symlink
@@ -54,7 +54,7 @@ for config in "${CONFIGS[@]}"; do
     ln -s "$src" "$dest"
 done
 
-# Enable SDDM login manager
+# Enable SDDM
 echo "[*] Enabling SDDM login manager..."
 sudo systemctl enable sddm.service
 
@@ -66,7 +66,7 @@ makepkg -si --noconfirm
 cd ..
 rm -rf ame
 
-# Run ame to install font and neofetch packages
+# Run ame to install fonts and neofetch
 echo "[*] Installing all-the-icons fonts and neofetch..."
 ame ins ttf-all-the-icons
 ame ins neofetch
@@ -101,7 +101,7 @@ mkdir -p "$HOME/Pictures/Wallpapers"
 cp "$DOTFILES_DIR/cirno1.jpg" "$HOME/Pictures/Wallpapers/"
 cp "$DOTFILES_DIR/cirno.jpg" "$HOME/Pictures/Wallpapers/"
 
-# Add fastfetch command to .bashrc
+# Add fastfetch to .bashrc
 BASHRC="$HOME/.bashrc"
 FASTFETCH_CMD='fastfetch --logo /home/rain/.config/fastfetch/images/cirno.png --logo-type kitty-direct'
 
@@ -111,6 +111,18 @@ if ! grep -Fxq "$FASTFETCH_CMD" "$BASHRC"; then
 else
     echo "[*] fastfetch command already exists in $BASHRC"
 fi
+
+# Numlock on while using SDDM
+
+SDDM="/etc/sddm.conf"
+NUMLOCK_CMD='[General] Numlock=on'
+
+if ! grep -Fxq "$NUMLOCK_CMD" "$SDDM"; then
+    echo "[*] Activating Numlock for SDDM"
+    echo "$NUMLOCK_CMD" >> "$SDDM"
+else
+	echo "[*] Numlock is already activated"
+fi 
 
 # Install SDDM theme
 echo "[*] Installing SDDM Astronaut theme..."
