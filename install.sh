@@ -3,7 +3,7 @@ set -e
 
 # Install required packages
 echo "[*] Installing required packages..."
-sudo pacman -S --noconfirm hyprland xorg-xrandr rust firefox noto-fonts-cjk noto-fonts-emoji noto-fonts fastfetch pacman-contrib hyprshot waybar hyprpaper rofi sddm nwg-look kitty nemo hyprpolkitagent pipewire-pulse git xdg-desktop-portal-hyprland git noto-fonts breeze-gtk
+sudo pacman -S --noconfirm hyprland xorg-xrandr rust firefox noto-fonts-cjk noto-fonts-emoji noto-fonts fastfetch qt6ct pacman-contrib hyprshot waybar hyprpaper rofi sddm nwg-look kitty nemo hyprpolkitagent pipewire-pulse git xdg-desktop-portal-hyprland git noto-fonts breeze-gtk
 
 # Clone dotfiles 
 DOTFILES_DIR="$HOME/.dotfiles"
