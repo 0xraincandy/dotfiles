@@ -15,9 +15,9 @@ fi
 # Create .config if doesnt exist
 mkdir -p "$HOME/.config"
 
-# -------------------------
-# Add Vim in Kitty desktop entry
-# -------------------------
+
+# Making vim the default text editor
+
 echo "[*] Adding vim as default text editor..."
 APP_DIR="$HOME/.local/share/applications"
 mkdir -p "$APP_DIR"
