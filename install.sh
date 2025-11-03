@@ -3,7 +3,7 @@ set -e
 
 # Install required packages
 echo "[*] Installing required packages..."
-sudo pacman -S --noconfirm hyprland xorg-xrandr rust firefox noto-fonts-cjk noto-fonts-emoji noto-fonts fastfetch pacman-contrib hyprshot waybar hyprpaper rofi sddm nwg-look kitty dolphin hyprpolkitagent pipewire-pulse git xdg-desktop-portal-hyprland git noto-fonts breeze-gtk
+sudo pacman -S --noconfirm hyprland xorg-xrandr rust firefox noto-fonts-cjk noto-fonts-emoji noto-fonts fastfetch pacman-contrib hyprshot waybar hyprpaper rofi sddm nwg-look kitty nemo hyprpolkitagent pipewire-pulse git xdg-desktop-portal-hyprland git noto-fonts breeze-gtk
 
 # Clone dotfiles 
 DOTFILES_DIR="$HOME/.dotfiles"
@@ -110,27 +110,6 @@ if ! grep -Fxq "$FASTFETCH_CMD" "$BASHRC"; then
 else
     echo "[*] fastfetch command already exists in $BASHRC"
 fi
-
-# Darkmode for Dolphin
-BASHRC="$HOME/.bashrc"
-KVANTUM='export QT_STYLE_OVERRIDE_kvantum'
-if ! grep -Fxq "$KVANTUM" "$BASHRC"; then
-    echo "[*] Activating Darkmode for Dolphin"
-    echo "$KVANTUM" >> "$BASHRC"
-else
-    echo "[*] Darkmode is already enabled"
-fi
-# Numlock on while using SDDM
-
-SDDM="/etc/sddm.conf"
-NUMLOCK_CMD='[General] Numlock=on'
-
-if ! grep -Fxq "$NUMLOCK_CMD" "$SDDM"; then
-    echo "[*] Activating Numlock for SDDM"
-    echo "$NUMLOCK_CMD" >> "$SDDM"
-else
-	echo "[*] Numlock is already activated"
-fi 
 
 # Install SDDM theme
 echo "[*] Installing SDDM Astronaut theme..."
