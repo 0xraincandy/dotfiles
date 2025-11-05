@@ -106,7 +106,7 @@ cp "$DOTFILES_DIR/Remilia5.jpg" "$HOME/Pictures/Wallpapers/"
 
 # Add fastfetch to .bashrc
 BASHRC="$HOME/.bashrc"
-FASTFETCH_CMD='fastfetch --logo /home/rain/.config/fastfetch/images/cirno.png --logo-type kitty-direct'
+FASTFETCH_CMD='fastfetch --logo /$HOME/.config/fastfetch/images/cirno.png --logo-type kitty-direct'
 if ! grep -Fxq "$FASTFETCH_CMD" "$BASHRC"; then
     echo "[*] Adding fastfetch command to $BASHRC"
     echo "$FASTFETCH_CMD" >> "$BASHRC"
