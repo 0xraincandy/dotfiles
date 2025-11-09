@@ -55,8 +55,8 @@ for config in "${CONFIGS[@]}"; do
 done
 
 # Enable SDDM
-#echo "[*] Enabling SDDM login manager..."
-#sudo systemctl enable sddm.service
+echo "[*] Enabling SDDM login manager..."
+sudo systemctl enable sddm.service
 
 # Clone and install ame from AUR
 echo "[*] Installing ame from AUR..."
